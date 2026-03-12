@@ -1,0 +1,255 @@
+'use client'
+
+import { useRef } from 'react'
+import { motion, useScroll, useTransform } from 'framer-motion'
+
+const projects = [
+  {
+    id: 1,
+    title: 'RentoAI',
+    subtitle: 'AI-Powered Rental Platform',
+    desc: 'A platform that leverages AI to simplify property rental searches, integrating recommendation systems and smart filtering.',
+    tags: ['Next.js', 'Tailwind', 'Framer Motion', 'Clerk'],
+    color: '#7c3aed',
+    gradient: 'linear-gradient(135deg, #1e1035, #2d1b69)',
+    demo: '#',
+    code: '#',
+    // Replace with your actual video: video: '/videos/rentoai.mp4'
+    video: null as string | null,
+  },
+  {
+    id: 2,
+    title: 'Portfolio v1',
+    subtitle: 'Full Stack Developer Portfolio',
+    desc: 'Personal portfolio built with Next.js, Postgres, Express and Tailwind. Features dynamic project showcase and contact form.',
+    tags: ['Next.js', 'Postgres', 'Express', 'Tailwind'],
+    color: '#0891b2',
+    gradient: 'linear-gradient(135deg, #0c1a2e, #0e3a5c)',
+    demo: '#',
+    code: '#',
+    video: null as string | null,
+  },
+  {
+    id: 3,
+    title: 'Delhi AQI Forecast',
+    subtitle: 'Air Quality Forecasting App',
+    desc: 'An ML-powered application that forecasts air quality index in Delhi using historical environmental data and linear regression.',
+    tags: ['Python', 'Streamlit', 'Machine Learning'],
+    color: '#059669',
+    gradient: 'linear-gradient(135deg, #0a1f1a, #0d3321)',
+    demo: '#',
+    code: '#',
+    video: null as string | null,
+  },
+  {
+    id: 4,
+    title: 'Aurora Dashboard',
+    subtitle: 'Real-time Analytics Platform',
+    desc: 'A real-time analytics platform with WebGL visualizations, live data streams, and role-based access control.',
+    tags: ['Next.js', 'Three.js', 'PostgreSQL'],
+    color: '#d97706',
+    gradient: 'linear-gradient(135deg, #1f1408, #3d2a0a)',
+    demo: '#',
+    code: '#',
+    video: null as string | null,
+  },
+]
+
+function ProjectCard({ project, index }: { project: typeof projects[0]; index: number }) {
+  return (
+    <div style={{
+      position: 'sticky',
+      top: `${80 + index * 24}px`,
+      zIndex: index + 1,
+    }}>
+      <motion.div
+        initial={{ opacity: 0, y: 80 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: '-100px' }}
+        transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] as const }}
+        style={{
+          borderRadius: '20px',
+          overflow: 'hidden',
+          border: `1px solid ${project.color}33`,
+          background: project.gradient,
+          boxShadow: `0 24px 80px rgba(0,0,0,0.5), 0 0 0 1px ${project.color}22`,
+          marginBottom: '1.5rem',
+        }}
+      >
+        {/* Top: Video/Preview */}
+        <div style={{ position: 'relative', width: '100%', aspectRatio: '16/7', overflow: 'hidden', background: 'rgba(0,0,0,0.3)' }}>
+
+          {project.video ? (
+            <video
+              src={project.video}
+              autoPlay muted loop playsInline
+              style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+            />
+          ) : (
+            /* Placeholder mockup when no video */
+            <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column', gap: '1rem', opacity: 0.4 }}>
+              {/* Fake browser bar */}
+              <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '36px', background: 'rgba(0,0,0,0.4)', display: 'flex', alignItems: 'center', padding: '0 1rem', gap: '0.5rem', borderBottom: '1px solid rgba(255,255,255,0.06)' }}>
+                <span style={{ width: '10px', height: '10px', borderRadius: '50%', background: '#ef4444', opacity: 0.7 }} />
+                <span style={{ width: '10px', height: '10px', borderRadius: '50%', background: '#f59e0b', opacity: 0.7 }} />
+                <span style={{ width: '10px', height: '10px', borderRadius: '50%', background: '#10b981', opacity: 0.7 }} />
+                <div style={{ flex: 1, marginLeft: '0.5rem', height: '20px', borderRadius: '4px', background: 'rgba(255,255,255,0.06)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                  <span style={{ fontSize: '0.6rem', color: '#64748b', fontFamily: 'var(--font-body)' }}>{project.title.toLowerCase().replace(' ', '-')}.vercel.app</span>
+                </div>
+              </div>
+              {/* Fake UI lines */}
+              <div style={{ paddingTop: '3rem', width: '100%', padding: '3rem 2rem 2rem', display: 'flex', gap: '1.5rem' }}>
+                <div style={{ width: '200px', display: 'flex', flexDirection: 'column', gap: '0.75rem', flexShrink: 0 }}>
+                  {[80, 60, 90, 50, 70, 55].map((w, i) => (
+                    <div key={i} style={{ height: '10px', width: `${w}%`, borderRadius: '4px', background: `${project.color}33` }} />
+                  ))}
+                </div>
+                <div style={{ flex: 1, borderRadius: '10px', background: 'rgba(255,255,255,0.03)', padding: '1rem', display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+                  <div style={{ height: '80px', borderRadius: '6px', background: `${project.color}22` }} />
+                  {[90, 70, 80].map((w, i) => (
+                    <div key={i} style={{ height: '10px', width: `${w}%`, borderRadius: '4px', background: 'rgba(255,255,255,0.06)' }} />
+                  ))}
+                </div>
+              </div>
+              {/* Upload video hint */}
+              <div style={{ position: 'absolute', bottom: '1rem', right: '1rem', fontSize: '0.65rem', fontFamily: 'var(--font-body)', color: '#475569', background: 'rgba(0,0,0,0.4)', padding: '0.3rem 0.7rem', borderRadius: '4px' }}>
+                Replace with: video: '/videos/{project.title.toLowerCase().replace(' ','-')}.mp4'
+              </div>
+            </div>
+          )}
+
+          {/* Color accent bar at bottom of preview */}
+          <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '3px', background: `linear-gradient(90deg, ${project.color}, ${project.color}44)` }} />
+        </div>
+
+        {/* Bottom: Info */}
+        <div style={{ padding: '2rem 2.5rem', display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: '2rem', flexWrap: 'wrap' }}>
+
+          {/* Left: Title + desc */}
+          <div style={{ flex: 1, minWidth: '280px' }}>
+            {/* Tags */}
+            <div style={{ display: 'flex', gap: '0.6rem', flexWrap: 'wrap', marginBottom: '1rem' }}>
+              {project.tags.map(tag => (
+                <span key={tag} style={{
+                  padding: '0.3rem 0.85rem',
+                  fontFamily: 'var(--font-body)', fontSize: '0.72rem', fontWeight: 600,
+                  letterSpacing: '0.06em', textTransform: 'uppercase',
+                  color: '#e2e8f0',
+                  background: 'rgba(255,255,255,0.08)',
+                  border: '1px solid rgba(255,255,255,0.12)',
+                  borderRadius: '6px',
+                }}>
+                  {tag}
+                </span>
+              ))}
+            </div>
+
+            <h3 style={{ fontFamily: 'var(--font-display)', fontWeight: 600, fontSize: '1.8rem', color: '#fff', marginBottom: '0.25rem', lineHeight: 1.1 }}>
+              {project.title}
+              <span style={{ fontFamily: 'var(--font-body)', fontWeight: 300, fontSize: '1rem', color: '#94a3b8', marginLeft: '0.75rem' }}>
+                — {project.subtitle}
+              </span>
+            </h3>
+            <p style={{ fontFamily: 'var(--font-body)', fontSize: '0.9rem', color: '#64748b', lineHeight: 1.7, marginTop: '0.75rem', maxWidth: '520px' }}>
+              {project.desc}
+            </p>
+          </div>
+
+          {/* Right: Buttons */}
+          <div style={{ display: 'flex', gap: '0.75rem', alignItems: 'center', flexShrink: 0 }}>
+            <a href={project.code} target="_blank" rel="noreferrer"
+              style={{
+                display: 'flex', alignItems: 'center', gap: '0.5rem',
+                padding: '0.7rem 1.4rem',
+                fontFamily: 'var(--font-body)', fontSize: '0.82rem', fontWeight: 500,
+                color: '#e2e8f0', background: 'rgba(255,255,255,0.07)',
+                border: '1px solid rgba(255,255,255,0.12)', borderRadius: '8px',
+                textDecoration: 'none', cursor: 'none', transition: 'all 0.25s',
+              }}
+              onMouseEnter={e => { (e.currentTarget as HTMLElement).style.background = 'rgba(255,255,255,0.12)' }}
+              onMouseLeave={e => { (e.currentTarget as HTMLElement).style.background = 'rgba(255,255,255,0.07)' }}
+            >
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
+              </svg>
+              Code
+            </a>
+            <a href={project.demo} target="_blank" rel="noreferrer"
+              style={{
+                display: 'flex', alignItems: 'center', gap: '0.5rem',
+                padding: '0.7rem 1.4rem',
+                fontFamily: 'var(--font-body)', fontSize: '0.82rem', fontWeight: 600,
+                color: '#fff',
+                background: `linear-gradient(135deg, ${project.color}, ${project.color}bb)`,
+                border: 'none', borderRadius: '8px',
+                textDecoration: 'none', cursor: 'none', transition: 'all 0.25s',
+                boxShadow: `0 0 20px ${project.color}44`,
+              }}
+              onMouseEnter={e => {
+                const el = e.currentTarget as HTMLElement
+                el.style.transform = 'translateY(-2px)'
+                el.style.boxShadow = `0 0 35px ${project.color}77`
+              }}
+              onMouseLeave={e => {
+                const el = e.currentTarget as HTMLElement
+                el.style.transform = ''
+                el.style.boxShadow = `0 0 20px ${project.color}44`
+              }}
+            >
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
+              </svg>
+              Live Demo
+            </a>
+          </div>
+        </div>
+      </motion.div>
+    </div>
+  )
+}
+
+export default function Projects() {
+  const containerRef = useRef<HTMLElement>(null)
+
+  return (
+    <section id="projects" ref={containerRef} style={{ position: 'relative', padding: '2rem 0 4rem', background: '#04040f' }}>
+
+      {/* bg glow */}
+      <div style={{ position: 'absolute', top: '20%', left: '50%', transform: 'translateX(-50%)', width: '800px', height: '400px', background: 'radial-gradient(ellipse, rgba(124,58,237,0.06) 0%, transparent 70%)', filter: 'blur(60px)', pointerEvents: 'none' }} />
+
+      <div style={{ maxWidth: '900px', margin: '0 auto', padding: '0 4rem' }}>
+
+        {/* Header — centered */}
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] as const }}
+          style={{ textAlign: 'center', marginBottom: '5rem' }}
+        >
+          <h2 style={{
+            fontFamily: 'var(--font-display)',
+            fontWeight: 700,
+            fontSize: 'clamp(2.5rem, 5vw, 4rem)',
+            letterSpacing: '-0.02em',
+            color: '#fff',
+            marginBottom: '0.75rem',
+          }}>
+            Projects
+          </h2>
+          <p style={{ fontFamily: 'var(--font-body)', fontSize: '0.95rem', color: '#64748b' }}>
+            A collection of things I've built
+          </p>
+        </motion.div>
+
+        {/* Stacking cards */}
+        <div style={{ position: 'relative' }}>
+          {projects.map((project, index) => (
+            <ProjectCard key={project.id} project={project} index={index} />
+          ))}
+        </div>
+
+      </div>
+    </section>
+  )
+}
