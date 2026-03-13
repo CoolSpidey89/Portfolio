@@ -73,7 +73,22 @@ function ProjectCard({ project, index }: { project: typeof projects[0]; index: n
         {/* Preview */}
         <div style={{ position: 'relative', width: '100%', aspectRatio: '16/7', overflow: 'hidden', background: 'rgba(0,0,0,0.3)' }}>
           {project.video ? (
-            <video src={project.video} autoPlay muted loop playsInline style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+            <video
+                src={project.video ?? undefined}
+                autoPlay
+                muted
+                loop
+                playsInline
+                onLoadStart={e => {
+                  const v = e.currentTarget
+                  const observer = new IntersectionObserver(
+                    ([entry]) => { if (entry.isIntersecting) v.play() },
+                    { threshold: 0.3 }
+                  )
+                  observer.observe(v)
+                }}
+                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+              />
           ) : (
             <div style={{ width: '100%', height: '100%' }}>
               <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '36px', background: 'rgba(0,0,0,0.4)', display: 'flex', alignItems: 'center', padding: '0 1rem', gap: '0.5rem', borderBottom: '1px solid rgba(255,255,255,0.06)' }}>

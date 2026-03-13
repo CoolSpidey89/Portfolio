@@ -16,12 +16,24 @@ export default function Contact() {
   }
 
   const handleSubmit = async () => {
-    if (!form.name || !form.email || !form.message) return
-    setStatus('sending')
-    // Replace with your Formspree/EmailJS/Resend endpoint
-    await new Promise(r => setTimeout(r, 1400))
-    setStatus('sent')
+  if (!form.name || !form.email || !form.message) return
+  setStatus('sending')
+  try {
+    const res = await fetch('https://formspree.io/f/meergyow', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(form),
+    })
+    if (res.ok) {
+      setStatus('sent')
+      setForm({ name: '', email: '', subject: '', message: '' })
+    } else {
+      setStatus('error')
+    }
+  } catch {
+    setStatus('error')
   }
+}
 
   const inputStyle = (name: string) => ({
     width: '100%',
