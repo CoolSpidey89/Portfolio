@@ -15,14 +15,14 @@ const fullCode = `class Developer {
     this.techStack  = [
       "HTML", "React", "JS", "Python",
     ];
-    this.currentFocus = "Develop Tech Skills";
+    this.currentFocus = "Developing Skills";
     this.learningNext = [
       "Adv ML", "MERN", "PowerBI",
     ];
   }
 
   build() {
-    return "Turning ideas into scalable apps";
+    return "Turning ideas into reality";
   }
 }`
 
