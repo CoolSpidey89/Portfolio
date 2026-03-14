@@ -23,7 +23,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${cormorant.variable} ${outfit.variable}`}>
+    <html lang="en" className={`${cormorant.variable} ${outfit.variable}`} style={{ overflowX: 'hidden' }}>
       <body>
         <CustomCursor />
         {children}
