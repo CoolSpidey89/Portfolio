@@ -5,14 +5,14 @@ import { motion, useInView, AnimatePresence } from 'framer-motion'
 
 const fullCode = `class Developer {
   constructor() {
-    this.name         = "Om Parida";
-    this.role         = "Full Stack Developer";
-    this.interests    = [
+    this.name = "Om Parida";
+    this.role = "Full Stack Developer";
+    this.interests  = [
       "Machine Learning",
       "Data Visualization",
       "Frontend Development",
     ];
-    this.techStack    = [
+    this.techStack  = [
       "HTML", "React", "JS", "Python",
     ];
     this.currentFocus = "Develop Tech Skills";
@@ -22,8 +22,7 @@ const fullCode = `class Developer {
   }
 
   build() {
-    return "Turning ideas into" +
-      " scalable apps";
+    return "Turning ideas into scalable apps";
   }
 }`
 
