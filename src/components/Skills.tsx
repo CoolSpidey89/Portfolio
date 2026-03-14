@@ -380,3 +380,5 @@ export default function Skills() {
     </>
   )
 }
+
+//Skills updated with a 3D globe visualization using react-three-fiber, allowing users to interactively explore skills by category. The globe features smooth rotation, hover effects for skill details, and a sidebar listing skills by category.
