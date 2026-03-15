@@ -17,8 +17,8 @@ const outfit = Outfit({
 })
 
 export const metadata: Metadata = {
-  title: 'Your Name — Portfolio',
-  description: 'Full-stack developer & creative technologist',
+  title: 'Om Parida — Portfolio',
+  description: 'Full-stack developer',
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

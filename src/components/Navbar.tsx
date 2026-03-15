@@ -109,9 +109,9 @@ export default function Navbar() {
             <motion.div
               animate={{ rotate: 360 }}
               transition={{ duration: 9, repeat: Infinity, ease: 'linear' }}
-              style={{ position: 'absolute', inset: '-2px', borderRadius: '50%', background: 'conic-gradient(from 0deg, #7c3aed, #06b6d4, #a78bfa, #7c3aed)' }}
+              style={{ position: 'absolute', inset: '-1px', borderRadius: '50%', background: 'conic-gradient(from 0deg, #7c3aed, #06b6d4, #a78bfa, #7c3aed)' }}
             />
-            <div style={{ position: 'absolute', inset: '2px', borderRadius: '50%', background: '#04040f' }} />
+            <div style={{ position: 'absolute', inset: '1px', borderRadius: '50%', background: '#04040f' }} />
             <div style={{ position: 'absolute', inset: '2px', borderRadius: '50%', overflow: 'hidden' }}>
               <Image src="/avatar.jpg" alt="Om" width={34} height={34} style={{ objectFit: 'cover', width: '100%', height: '100%' }} />
             </div>
