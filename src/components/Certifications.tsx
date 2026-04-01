@@ -11,7 +11,7 @@ const certData = {
   ],
   'Professional': [
     { id: 4, title: 'PowerBI Workshop', subtitle: 'Data Visualization & Business Intelligence', org: 'CertX', date: '2026', result: 'Certified', resultColor: '#34d399', link: 'https://certx.in/certificate/36a28147-6eed-47a5-8342-e5f926ebba611113870' },
-    { id: 5, title: 'AI Fundamentals', subtitle: 'AI Skill Fundamentals', org: 'DataCamp', date: '27 March 2026', result: 'Certified', resultColor: '#3b82f6', link: 'https://www.datacamp.com/skill-verification/AIF0029894483680' },
+    { id: 5, title: 'AI Fundamentals', subtitle: 'AI Skill Fundamentals', org: 'DataCamp', date: '27 March 2026', result: 'Certified', resultColor: '#34d399', link: 'https://www.datacamp.com/skill-verification/AIF0029894483680' },
   ],
 }
 
