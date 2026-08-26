@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { Cormorant_Garamond, Outfit } from 'next/font/google'
 import CustomCursor from '@/components/CustomCursor'
+import Intro from '@/components/Intro'
 import './globals.css'
 
 const cormorant = Cormorant_Garamond({
@@ -26,6 +27,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" className={`${cormorant.variable} ${outfit.variable}`} style={{ overflowX: 'hidden' }}>
       <body>
         <CustomCursor />
+        <Intro />
         {children}
       </body>
     </html>

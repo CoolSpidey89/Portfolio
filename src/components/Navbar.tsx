@@ -78,9 +78,9 @@ export default function Navbar() {
       {/* ── Fixed bar ── */}
       <motion.nav
         className="nav-bar"
-        initial={{ y: -80, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+        initial={{ y: -30, opacity: 0, filter: 'blur(8px)' }}
+        animate={{ y: 0, opacity: 1, filter: 'blur(0px)' }}
+        transition={{ type: 'spring', damping: 22, stiffness: 180, delay: 0.05 }}
         style={{
           position: 'fixed',
           top: 0, left: 0, right: 0,
